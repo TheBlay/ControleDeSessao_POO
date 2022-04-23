@@ -1,8 +1,38 @@
 <%@ page pageEncoding="UTF-8" %>
-<%
+<style>
+    .header {
+        background-color: #ffb63b;
+        margin: 5px;
+        border-style: solid;
+        border-radius: 3px;
+        padding-left: 5px;
+    }
+    
+    #titulo {
+        font-size: 38px;
+        
+    }
+    table, tr, td {
+        border: 1px solid black;
+        font-size: 20px;
+    }
+    
+</style>
+<%@page import="java.util.*" %>
+<%   
+Random rand = new Random();
+
     if(request.getParameter("logon")!=null){
         String username = request.getParameter("username");
+        int[] numsLoteria = new int[6]; int i; int num;
         session.setAttribute("username", username);
+        //Criando números da loteria únicos para esta sessão
+        for(i=0;i<6;i++){
+            num = rand.nextInt(100);
+            numsLoteria[i] = num;
+        }
+        //salvando esses valores na sessão
+        session.setAttribute("numLoteria", numsLoteria);
         response.sendRedirect(request.getRequestURI());
     }
     if(request.getParameter("logoff")!=null){
@@ -10,20 +40,21 @@
         response.sendRedirect(request.getRequestURI());
     }
 %>
-<h1>BlayApp</h1>
+
+<div class="header">
+    <a href="index.jsp"  ><h1 id="titulo" >BlayApp</h1></a>
+<hr/>
+<a href="index.jsp">ÍNDICE</a> |
+<a href="about.jsp">SOBRE</a> | 
 <%if(session.getAttribute("username")==null){%>
-    <div>Identifique-se para ter acesso ao site</div>
-    <form>
-        <input type="text" name="username"/>
-        <input type="submit" name="logon" value="Entrar"/>
-    </form>
+<h3>Por favor, efetue login</h3>
 <%}else{%>
     <form>
-        <a href="index.jsp">ÍNDICE</a> |
-        <a href="page1.jsp">PÁGINA 1</a> |
-        <a href="page2.jsp">PÁGINA 2</a> | 
+        
+        <a href="loteria.jsp">Dicas para loteria</a> |
         Bem vindo, <b><%= session.getAttribute("username") %></b>
         <input type="submit" name="logoff" value="Sair"/>
     </form>
 <%}%>
-<hr/>
+</div>
+<br/>

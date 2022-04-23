@@ -18,10 +18,11 @@
         <h2>Bem-Vindo(a) <%= session.getAttribute("username") %></h2>
             
         <%} else {%>
+        <div>Identifique-se para ter acesso ao site</div>
         <form>
-            
-            
-        </form>
+        <input type="text" name="username" />
+        <input type="submit" name="logon" value="Entrar"/>
+    </form>
         <%}%>
     </body>
 </html>
