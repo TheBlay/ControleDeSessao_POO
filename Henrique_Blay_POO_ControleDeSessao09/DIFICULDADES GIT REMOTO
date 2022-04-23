@@ -1,0 +1,3 @@
+Eu tentei fazer o git local se relacionar com o github, fazendo o git daqui rastrear os commits no próprio Netbeans,
+mas obtive erros de autenticação, mesmo colocando o usuário e senha corretos do Github. O arquivo com o nome, dentro deste main, é o "commit" final,
+com as coisas novas adicionadas e finalizado.
